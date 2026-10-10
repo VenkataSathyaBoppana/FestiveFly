@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Festive Flyby</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    main { max-width: 760px; margin: 0 auto; padding: 44px 20px 80px; }
+    .hero { display: flex; gap: 16px; align-items: center; }
+    .hero img { width: 56px; height: 56px; }
+    h1 { margin: 0; font-size: 30px; letter-spacing: -.02em; }
+    .lede { color: var(--muted); font-size: 15px; margin: 6px 0 28px; max-width: 60ch; }
+    h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin: 36px 0 10px; }
+    .box { border: 1px solid var(--line); border-radius: 14px; padding: 4px 20px; background: var(--panel); }
+    .row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+    .row:last-child { border-bottom: none; }
+    .row b { display: block; }
+    .row small { color: var(--muted); }
+    .access { display: flex; gap: 14px; align-items: center; padding: 16px 20px; border-radius: 14px; border: 1px solid var(--line); background: var(--panel); flex-wrap: wrap; }
+    .access .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--orange); flex: none; }
+    .access.ok .dot { background: #22c55e; }
+    .access p { margin: 0; flex: 1; min-width: 240px; }
+    .previews { justify-content: flex-start !important; gap: 10px !important; }
+    .time { font: inherit; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--text); }
+    .row small { display: block; }
+    input[type=range] { width: 200px; accent-color: var(--accent); }
+    .note { color: var(--muted); font-size: 12.5px; margin-top: 28px; }
+    #saved { color: var(--accent); font-size: 12px; opacity: 0; transition: opacity .2s; margin-left: 8px; }
+    #saved.on { opacity: 1; }
+  </style>
+</head>
+<body>
+<main>
+  <div class="hero">
+    <img src="icons/icon128.png" alt="">
+    <h1>Festive Flyby</h1>
+  </div>
+  <p class="lede">Twice a day, a little character flies across the page you're on: a <b>morning greeting</b> the first time you use Chrome each morning, and an <b>end-of-day sign-off</b> in the evening. During festival seasons the character changes and counts down to the big day: Holi, Raksha Bandhan, Ganesh Chaturthi, Navratri &amp; Dussehra, Diwali (with crackers!), Halloween and Christmas. The card is always the opposite of your system theme, so it stands out: white in dark mode, black in light mode.</p>
+
+  <div class="access" id="access">
+    <span class="dot"></span>
+    <p id="accessText">Checking site access…</p>
+    <button class="btn primary" id="grant">Allow on all sites</button>
+  </div>
+
+  <h2>Try it</h2>
+  <div class="box">
+    <div class="row">
+      <div><b>Character</b></div>
+      <div class="seg" role="radiogroup" aria-label="Character" id="pseasons" style="flex-wrap:wrap">
+        <label><input type="radio" name="pseason" value="none" checked><span>☀️🌙 Everyday</span></label>
+      </div>
+    </div>
+    <div class="row">
+      <div><b>Your system theme</b></div>
+      <div class="seg" role="radiogroup" aria-label="Theme">
+        <label><input type="radio" name="ptheme" value="dark" checked><span>Dark → white card</span></label>
+        <label><input type="radio" name="ptheme" value="light"><span>Light → black card</span></label>
+      </div>
+    </div>
+    <div class="row previews">
+      <button class="btn primary" data-kind="morning">☀️ Preview morning</button>
+      <button class="btn primary" data-kind="evening">🌙 Preview end of day</button>
+    </div>
+  </div>
+
+  <h2>Settings <span id="saved">Saved</span></h2>
+  <div class="box">
+    <div class="row">
+      <div><b>☀️ Morning greeting</b><small>The first time you use Chrome between 4 AM and noon.</small></div>
+      <input type="checkbox" class="switch" id="morning" aria-label="Morning greeting">
+    </div>
+    <div class="row">
+      <div><b>🌙 End-of-day sign-off</b><small>At this time, or as soon as you're back in Chrome after it.</small></div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <input type="time" id="eveningTime" aria-label="End of day time" class="time">
+        <input type="checkbox" class="switch" id="evening" aria-label="End-of-day sign-off">
+      </div>
+    </div>
+    <div class="row">
+      <div><b>Every day, not just holidays</b><small>Off = only fly during the festival seasons you turn on below.</small></div>
+      <input type="checkbox" class="switch" id="everyday" aria-label="Every day">
+    </div>
+    <div id="seasonRows" style="display:contents"></div>
+    <div class="row">
+      <div><b>Flight speed</b><small id="durLabel">10 seconds across the screen</small></div>
+      <input type="range" id="duration" min="6" max="20" step="1" aria-label="Seconds across the screen">
+    </div>
+  </div>
+
+  <p class="note">The flyby never blocks clicks, and <b>Esc</b> dismisses it. It can't appear on Chrome's own pages (new tab, settings) or the Web Store. If you're away from Chrome when it's due, it waits and shows up when you come back. Each one appears at most once a day. If "reduce motion" is on in your OS, it fades in and out instead of flying.</p>
+</main>
+<script type="module" src="welcome.js"></script>
+</body>
+</html>

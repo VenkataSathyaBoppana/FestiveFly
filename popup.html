@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Festive Flyby</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { width: 300px; padding: 14px; }
+    header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+    header img { width: 22px; height: 22px; }
+    header h1 { font-size: 15px; margin: 0; flex: 1; }
+    .status { border: 1px solid var(--line); background: var(--panel); border-radius: 12px; padding: 12px; }
+    .status b { display: block; font-size: 15px; }
+    .status small { color: var(--muted); }
+    .today { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+    .today div { border: 1px solid var(--line); border-radius: 12px; padding: 10px; font-size: 12px; color: var(--muted); }
+    .today b { display: block; color: var(--text); font-size: 13px; margin-top: 2px; }
+    .btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+    #err { color: var(--red); font-size: 12px; margin-top: 8px; min-height: 1em; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="icons/icon48.png" alt="">
+    <h1>Festive Flyby</h1>
+    <a href="#" id="settings" title="Settings">Settings</a>
+  </header>
+  <div class="status">
+    <b id="title">…</b>
+    <small id="detail"></small>
+  </div>
+  <div class="today">
+    <div>☀️ Morning<b id="mStatus">…</b></div>
+    <div>🌙 End of day<b id="eStatus">…</b></div>
+  </div>
+  <div class="btns">
+    <button class="btn" data-kind="morning">Show ☀️ now</button>
+    <button class="btn" data-kind="evening">Show 🌙 now</button>
+  </div>
+  <div id="err"></div>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
